@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h1 class="posttitle loader">
+<h1 class="posttitle loader">{{ post.title }}</h1>
 {% if post.published_date %}
     <div class="date postdate" style="font-size:25px">
         {{post.published_date}}
@@ -25,7 +25,7 @@
 <div style="font-size:15px">
     {% for comment in post.comments.all %}
     <br>
-        {% if user.is_authenticated or comment.approved_comment%}
+        {% if user.is_authenticated or comment.approved_comment %}
         
             {{comment.created_date}}
                 {% if not comment.approved_comment %}
@@ -45,9 +45,6 @@
     {% endfor %}
 </div>    
 <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' post.pk %}">Add comment</a>
-
-     
-
 
 
 {% endblock content %}
